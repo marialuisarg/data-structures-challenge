@@ -7,42 +7,47 @@ using namespace std;
 bool ShoppingList::addItem(string item, int qty) {
     items.push_back(item);
     quantities.push_back(qty);
+    updateSize(1);
 
     return true;
 }
 
 bool ShoppingList::removeItem(string item) {
-    for (int i = 0; i < items.size(); i++) {
+    for (int i = 0; i < getSize(); i++) {
         if (items[i] == item) {
             items.erase(items.begin() + i);
             quantities.erase(quantities.begin() + i);
-            break;
+            updateSize(-1);
+            return true;
         }
     }
     
-    return true;
+    cout << "Item not found!" << endl;
+    return false;
 }
 
 bool ShoppingList::updateItemName(string item, string newName) {
-    for (int i = 0; i < items.size(); i++) {
+    for (int i = 0; i < getSize(); i++) {
         if (items[i] == item) {
             items[i] = newName;
-            break;
+            return true;
         }
     }
 
-    return true;
+    cout << "Item not found!" << endl;
+    return false;
 }
 
 bool ShoppingList::updateItemQty(string item, int newQty) {
     for (int i = 0; i < items.size(); i++) {
         if (items[i] == item) {
             quantities[i] = newQty;
-            break;
+            return true;
         }
     }
 
-    return true;
+    cout << "Item not found!" << endl;
+    return false;
 }
 
 void ShoppingList::printList() {

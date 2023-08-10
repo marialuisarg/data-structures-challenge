@@ -7,6 +7,29 @@
 
 using namespace std;
 
+int menu() {
+    string op;
+    int choice;
+        
+    cout << "MENU" << endl;
+    cout << "-------------" << endl;
+    cout << "[1] Add item" << endl;
+    cout << "[2] Remove item" << endl;
+    cout << "[3] Update item name" << endl;
+    cout << "[4] Update item quantity" << endl;
+    cout << "[5] Print list" << endl;
+    cout << "[6] Exit" << endl;
+    cout << "-------------" << endl;
+
+    cout << "Enter option: ";
+    getline(cin, op);
+    choice = atoi(op.c_str());
+
+    cout << "-------------" << endl;
+
+    return choice;
+}
+
 int main() {
     ShoppingList list;
     string item, newName;
@@ -14,20 +37,7 @@ int main() {
 
     while (op != 6) {
 
-        // menu
-        cout << "MENU" << endl;
-        cout << "-------------" << endl;
-        cout << "[1] Add item" << endl;
-        cout << "[2] Remove item" << endl;
-        cout << "[3] Update item name" << endl;
-        cout << "[4] Update item quantity" << endl;
-        cout << "[5] Print list" << endl;
-        cout << "[6] Exit" << endl;
-        cout << "-------------" << endl;
-
-        cout << "Enter option: ";
-        cin >> op;
-        cout << "-------------" << endl;
+        op = menu();
 
         switch (op) {
             case 1:
@@ -39,7 +49,7 @@ int main() {
 
                 if (list.addItem(item, qty))
                     cout << "Item added successfully!" << endl;
-
+            
                 break;
             
             case 2:
@@ -85,10 +95,11 @@ int main() {
                 break;
             
             default:
-                cout << "Invalid option!" << endl;
+                cout << "Invalid option! Choose between 1 and 6." << endl;
                 break;
         }
 
+        op = 0;
         cout << "-------------" << endl;
     }
 
